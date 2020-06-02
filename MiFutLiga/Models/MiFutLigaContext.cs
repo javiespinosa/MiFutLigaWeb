@@ -1,10 +1,12 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace MiFutLiga.Models
 {
-    public partial class MiFutLigaContext : DbContext
+    public partial class MiFutLigaContext : IdentityDbContext<IdentityUser>
     {
         public MiFutLigaContext()
         {
@@ -959,7 +961,8 @@ namespace MiFutLiga.Models
                     .IsUnicode(false);
             });
 
-            OnModelCreatingPartial(modelBuilder);
+            //OnModelCreatingPartial(modelBuilder);
+            base.OnModelCreating(modelBuilder);
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
