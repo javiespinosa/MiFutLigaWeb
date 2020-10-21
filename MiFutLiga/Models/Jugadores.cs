@@ -11,6 +11,9 @@ namespace MiFutLiga.Models
         }
 
         public int idJugador { get; set; }
+        public DateTime Agregado { get; set; }
+        public DateTime? Modificado { get; set; }
+        public bool Eliminado { get; set; }
         public int idEquipo { get; set; }
         public int idTipoJugador { get; set; }
         public string NombreJugador { get; set; }

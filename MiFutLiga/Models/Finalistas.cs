@@ -6,6 +6,9 @@ namespace MiFutLiga.Models
     public partial class Finalistas
     {
         public int idFinalista { get; set; }
+        public DateTime Agregado { get; set; }
+        public DateTime? Modificado { get; set; }
+        public bool Eliminado { get; set; }
         public int? idTorneo { get; set; }
         public int idEquipo { get; set; }
         public int? idGrupo { get; set; }

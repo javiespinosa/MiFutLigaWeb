@@ -11,6 +11,9 @@ namespace MiFutLiga.Models
         }
 
         public int idTemporada { get; set; }
+        public DateTime Agregado { get; set; }
+        public DateTime? Modificado { get; set; }
+        public bool Eliminado { get; set; }
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFin { get; set; }
         public bool Activo { get; set; }

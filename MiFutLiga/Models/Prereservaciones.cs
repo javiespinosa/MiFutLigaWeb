@@ -6,6 +6,9 @@ namespace MiFutLiga.Models
     public partial class Prereservaciones
     {
         public int idPreReservacion { get; set; }
+        public DateTime Agregado { get; set; }
+        public DateTime? Modificado { get; set; }
+        public bool Eliminado { get; set; }
         public string NombreSolicitante { get; set; }
         public string Telefono { get; set; }
         public string Email { get; set; }

@@ -11,6 +11,9 @@ namespace MiFutLiga.Models
         }
 
         public int idTipoSancion { get; set; }
+        public DateTime Agregado { get; set; }
+        public DateTime? Modificado { get; set; }
+        public bool Eliminado { get; set; }
         public string Descripcion { get; set; }
         public int? Valor { get; set; }
 

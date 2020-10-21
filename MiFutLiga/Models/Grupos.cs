@@ -13,6 +13,9 @@ namespace MiFutLiga.Models
         }
 
         public int idGrupo { get; set; }
+        public DateTime Agregado { get; set; }
+        public DateTime? Modificado { get; set; }
+        public bool Eliminado { get; set; }
         public string NombreGrupo { get; set; }
         public int? NumEquipos { get; set; }
 

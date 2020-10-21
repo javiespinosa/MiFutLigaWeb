@@ -6,6 +6,9 @@ namespace MiFutLiga.Models
     public partial class JuegosSF
     {
         public int idJuegoSF { get; set; }
+        public DateTime Agregado { get; set; }
+        public DateTime? Modificado { get; set; }
+        public bool Eliminado { get; set; }
         public int? idCalendario { get; set; }
         public int? EqVisitante { get; set; }
         public int? EqLocal { get; set; }

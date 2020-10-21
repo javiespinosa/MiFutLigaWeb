@@ -6,6 +6,9 @@ namespace MiFutLiga.Models
     public partial class Puntuacion
     {
         public int idPuntuacion { get; set; }
+        public DateTime Agregado { get; set; }
+        public DateTime? Modificado { get; set; }
+        public bool Eliminado { get; set; }
         public int? idTorneo { get; set; }
         public int? idEquipo { get; set; }
         public int? PJ { get; set; }

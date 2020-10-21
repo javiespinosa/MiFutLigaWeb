@@ -13,6 +13,9 @@ namespace MiFutLiga.Models
         }
 
         public int idJuego { get; set; }
+        public DateTime Agregado { get; set; }
+        public DateTime? Modificado { get; set; }
+        public bool Eliminado { get; set; }
         public int? idJornada { get; set; }
         public int? idCalendario { get; set; }
         public int? Local { get; set; }

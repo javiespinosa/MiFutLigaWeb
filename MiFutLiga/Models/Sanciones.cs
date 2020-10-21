@@ -6,6 +6,9 @@ namespace MiFutLiga.Models
     public partial class Sanciones
     {
         public int idSancion { get; set; }
+        public DateTime Agregado { get; set; }
+        public DateTime? Modificado { get; set; }
+        public bool Eliminado { get; set; }
         public int idJuego { get; set; }
         public int idEquipo { get; set; }
         public int Sancionado { get; set; }

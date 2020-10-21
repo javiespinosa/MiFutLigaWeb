@@ -1,0 +1,37 @@
+﻿@model MiFutLiga.Models.Categorias
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<form asp-action="Create" role="form">
+    @await Html.PartialAsync("_ModalHeader", new ModalHeader { Heading = String.Format("{0} CATEGORIA", @Model != null ? (@Model.idCategoria == 0 ? "AGREGAR" : "EDITAR") : "AGREGAR") })
+
+    <div class="modal-body form-horizontal">
+        @*<div class="form-group">
+            <label asp-for="idCategoria" class="col-lg-3 col-sm-3 control-label"></label>
+            <div class="col-lg-6">
+                <input asp-for="idCategoria" class="form-control" />
+            </div>
+        </div>*@
+        <div class="form-group">
+            <label asp-for="NombreCategoria"  class="col-lg-3 col-sm-3 control-label"> Nombre de la Categoria</label>
+            <div class="col-lg-6">
+                <input asp-for="NombreCategoria" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Abierta" class="col-lg-3 col-sm-3 control-label"></label>
+            <div class="col-lg-6">
+                <input asp-for="Abierta" class="form-control" />
+            </div>
+        </div>
+        @*<div class="form-group">
+                <label asp-for="MobileNo" class="col-lg-3 col-sm-3 control-label"></label>
+                <div class="col-lg-6">
+                    <input asp-for="MobileNo" class="form-control" />
+                </div>
+            </div>*@
+    </div>
+    @await Html.PartialAsync("_ModalFooter", new ModalFooter { })
+</form>

@@ -44,6 +44,7 @@ namespace MiFutLiga.Models
         public virtual DbSet<LUsuarios> LUsuarios { get; set; }
         public virtual DbSet<Llista> Llista { get; set; }
         public virtual DbSet<Modulos> Modulos { get; set; }
+        public virtual DbSet<Noticias> Noticias { get; set; }
         public virtual DbSet<Participantes> Participantes { get; set; }
         public virtual DbSet<Permisos> Permisos { get; set; }
         public virtual DbSet<PermisosPorUsuario> PermisosPorUsuario { get; set; }
@@ -61,14 +62,14 @@ namespace MiFutLiga.Models
         public virtual DbSet<UsuariosPorEquipo> UsuariosPorEquipo { get; set; }
         public virtual DbSet<Visitas> Visitas { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-8U49RG5\\MSSQLSERVER2016;Database=MiFutLiga;User ID=sa;Password=123");
-            }
-        }
+//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//        {
+//            if (!optionsBuilder.IsConfigured)
+//            {
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+//                optionsBuilder.UseSqlServer("Server=DESKTOP-8U49RG5\\MSSQLSERVER2019;Database=MiFutLiga;User ID=sa;Password=123");
+//            }
+//        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -77,6 +78,8 @@ namespace MiFutLiga.Models
                 entity.HasKey(e => e.idAdministrador);
 
                 entity.Property(e => e.idAdministrador).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
 
                 entity.Property(e => e.Contrasenia)
                     .IsRequired()
@@ -87,15 +90,29 @@ namespace MiFutLiga.Models
                     .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<Calendario>(entity =>
             {
                 entity.HasKey(e => e.idCalendario);
 
+                entity.HasIndex(e => e.idDia);
+
+                entity.HasIndex(e => e.idHora);
+
+                entity.HasIndex(e => e.idTemporada);
+
+                entity.HasIndex(e => e.idTorneo);
+
                 entity.Property(e => e.idCalendario).ValueGeneratedNever();
 
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
                 entity.Property(e => e.Fecha).HasColumnType("datetime");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.HasOne(d => d.idDiaNavigation)
                     .WithMany(p => p.Calendario)
@@ -122,7 +139,15 @@ namespace MiFutLiga.Models
             {
                 entity.HasKey(e => e.idCalendarioTorneo);
 
+                entity.HasIndex(e => e.idCalendario);
+
+                entity.HasIndex(e => e.idTorneo);
+
                 entity.Property(e => e.idCalendarioTorneo).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.HasOne(d => d.idCalendarioNavigation)
                     .WithMany(p => p.CalendarioTorneos)
@@ -141,6 +166,10 @@ namespace MiFutLiga.Models
 
                 entity.Property(e => e.idCategoria).ValueGeneratedNever();
 
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
+
                 entity.Property(e => e.NombreCategoria)
                     .HasMaxLength(30)
                     .IsUnicode(false);
@@ -152,21 +181,33 @@ namespace MiFutLiga.Models
 
                 entity.Property(e => e.idColor).ValueGeneratedNever();
 
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
                 entity.Property(e => e.Descripcion)
                     .HasMaxLength(30)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<Comentarios>(entity =>
             {
                 entity.HasKey(e => e.idComentario);
 
+                entity.HasIndex(e => e.idParticipante);
+
+                entity.HasIndex(e => e.idTema);
+
                 entity.Property(e => e.idComentario).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
 
                 entity.Property(e => e.Comentario)
                     .IsRequired()
                     .HasMaxLength(300)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.HasOne(d => d.idParticipanteNavigation)
                     .WithMany(p => p.Comentarios)
@@ -185,7 +226,15 @@ namespace MiFutLiga.Models
             {
                 entity.HasKey(e => e.idDiaPorTorneo);
 
+                entity.HasIndex(e => e.idDia);
+
+                entity.HasIndex(e => e.idTorneo);
+
                 entity.Property(e => e.idDiaPorTorneo).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.HasOne(d => d.idDiaNavigation)
                     .WithMany(p => p.DiasPorTorneo)
@@ -204,16 +253,26 @@ namespace MiFutLiga.Models
 
                 entity.Property(e => e.idDia).ValueGeneratedNever();
 
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
                 entity.Property(e => e.Descripcion)
                     .HasMaxLength(25)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<Divisiones>(entity =>
             {
                 entity.HasKey(e => e.idDivision);
 
+                entity.HasIndex(e => e.idCategoria);
+
                 entity.Property(e => e.idDivision).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.Property(e => e.NombreDivision)
                     .HasMaxLength(30)
@@ -230,7 +289,13 @@ namespace MiFutLiga.Models
             {
                 entity.HasKey(e => e.idEquipo);
 
+                entity.HasIndex(e => e.idCategoria);
+
+                entity.HasIndex(e => e.idDivision);
+
                 entity.Property(e => e.idEquipo).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
 
                 entity.Property(e => e.Auxiliar)
                     .HasMaxLength(30)
@@ -265,6 +330,8 @@ namespace MiFutLiga.Models
                 entity.Property(e => e.Medico)
                     .HasMaxLength(30)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.Property(e => e.NombreEquipo)
                     .IsRequired()
@@ -301,7 +368,15 @@ namespace MiFutLiga.Models
             {
                 entity.HasKey(e => e.idFechaDeJuego);
 
+                entity.HasIndex(e => e.idCalendario);
+
+                entity.HasIndex(e => e.idJuego);
+
                 entity.Property(e => e.idFechaDeJuego).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.HasOne(d => d.idCalendarioNavigation)
                     .WithMany(p => p.FechasDeJuego)
@@ -318,7 +393,17 @@ namespace MiFutLiga.Models
             {
                 entity.HasKey(e => e.idFinalista);
 
+                entity.HasIndex(e => e.idEquipo);
+
+                entity.HasIndex(e => e.idGrupo);
+
+                entity.HasIndex(e => e.idTorneo);
+
                 entity.Property(e => e.idFinalista).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.HasOne(d => d.idEquipoNavigation)
                     .WithMany(p => p.Finalistas)
@@ -341,11 +426,21 @@ namespace MiFutLiga.Models
             {
                 entity.HasKey(e => e.idGol);
 
+                entity.HasIndex(e => e.idEquipo);
+
+                entity.HasIndex(e => e.idJuego);
+
+                entity.HasIndex(e => e.idJugador);
+
                 entity.Property(e => e.idGol).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
 
                 entity.Property(e => e.MinutoAnotacion)
                     .HasMaxLength(10)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.HasOne(d => d.idEquipoNavigation)
                     .WithMany(p => p.Goles)
@@ -370,6 +465,10 @@ namespace MiFutLiga.Models
 
                 entity.Property(e => e.idGrupo).ValueGeneratedNever();
 
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
+
                 entity.Property(e => e.NombreGrupo)
                     .HasMaxLength(60)
                     .IsUnicode(false);
@@ -379,7 +478,15 @@ namespace MiFutLiga.Models
             {
                 entity.HasKey(e => e.idGruposDetalle);
 
+                entity.HasIndex(e => e.idGrupo);
+
+                entity.HasIndex(e => e.idTorneo);
+
                 entity.Property(e => e.idGruposDetalle).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.HasOne(d => d.idGrupoNavigation)
                     .WithMany(p => p.GruposDetalle)
@@ -396,11 +503,17 @@ namespace MiFutLiga.Models
             {
                 entity.HasKey(e => e.idHorario);
 
+                entity.HasIndex(e => e.idDivision);
+
                 entity.Property(e => e.idHorario).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
 
                 entity.Property(e => e.Hora)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.HasOne(d => d.idDivisionNavigation)
                     .WithMany(p => p.Horarios)
@@ -415,16 +528,28 @@ namespace MiFutLiga.Models
 
                 entity.Property(e => e.idHora).ValueGeneratedNever();
 
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
                 entity.Property(e => e.Descripcion)
                     .HasMaxLength(10)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<HorasPorDia>(entity =>
             {
                 entity.HasKey(e => e.idHoraPorDia);
 
+                entity.HasIndex(e => e.idDiaPorTorneo);
+
+                entity.HasIndex(e => e.idHora);
+
                 entity.Property(e => e.idHoraPorDia).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.HasOne(d => d.idDiaPorTorneoNavigation)
                     .WithMany(p => p.HorasPorDia)
@@ -441,11 +566,17 @@ namespace MiFutLiga.Models
             {
                 entity.HasKey(e => e.idImagen);
 
+                entity.HasIndex(e => e.idTema);
+
                 entity.Property(e => e.idImagen).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
 
                 entity.Property(e => e.ContentType)
                     .HasMaxLength(10)
                     .IsFixedLength();
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.Property(e => e.imagen).HasColumnType("image");
 
@@ -460,9 +591,17 @@ namespace MiFutLiga.Models
             {
                 entity.HasKey(e => e.idInscripcion);
 
+                entity.HasIndex(e => e.idEquipo);
+
+                entity.HasIndex(e => e.idTorneo);
+
                 entity.Property(e => e.idInscripcion).ValueGeneratedNever();
 
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
                 entity.Property(e => e.FechaInscripcion).HasColumnType("datetime");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.HasOne(d => d.idEquipoNavigation)
                     .WithMany(p => p.Inscripciones)
@@ -479,11 +618,17 @@ namespace MiFutLiga.Models
             {
                 entity.HasKey(e => e.idJornada);
 
+                entity.HasIndex(e => e.idTorneo);
+
                 entity.Property(e => e.idJornada).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
 
                 entity.Property(e => e.FechaFinal).HasColumnType("datetime");
 
                 entity.Property(e => e.FechaInicial).HasColumnType("datetime");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.Property(e => e.NumJornada)
                     .HasMaxLength(10)
@@ -500,7 +645,17 @@ namespace MiFutLiga.Models
             {
                 entity.HasKey(e => e.idJuego);
 
+                entity.HasIndex(e => e.IdTorneo);
+
+                entity.HasIndex(e => e.idCalendario);
+
+                entity.HasIndex(e => e.idJornada);
+
                 entity.Property(e => e.idJuego).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.Property(e => e.Observaciones)
                     .HasMaxLength(500)
@@ -526,7 +681,17 @@ namespace MiFutLiga.Models
             {
                 entity.HasKey(e => e.idJuegoSF);
 
+                entity.HasIndex(e => e.idCalendario);
+
+                entity.HasIndex(e => e.idGrupo);
+
+                entity.HasIndex(e => e.idTorneo);
+
                 entity.Property(e => e.idJuegoSF).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.HasOne(d => d.idCalendarioNavigation)
                     .WithMany(p => p.JuegosSF)
@@ -548,7 +713,13 @@ namespace MiFutLiga.Models
             {
                 entity.HasKey(e => e.idJugador);
 
+                entity.HasIndex(e => e.idEquipo);
+
+                entity.HasIndex(e => e.idTipoJugador);
+
                 entity.Property(e => e.idJugador).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
 
                 entity.Property(e => e.Altura).HasColumnType("decimal(10, 2)");
 
@@ -563,6 +734,8 @@ namespace MiFutLiga.Models
                 entity.Property(e => e.FechaNacimiento).HasColumnType("datetime");
 
                 entity.Property(e => e.Fotografia).HasColumnType("image");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.Property(e => e.NombreJugador)
                     .IsRequired()
@@ -609,10 +782,14 @@ namespace MiFutLiga.Models
 
                 entity.Property(e => e.idLUsuario).ValueGeneratedNever();
 
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
                 entity.Property(e => e.Login)
                     .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.Property(e => e.Password)
                     .IsRequired()
@@ -629,6 +806,10 @@ namespace MiFutLiga.Models
                 entity.ToTable("Llista", "usrfut7");
 
                 entity.Property(e => e.idLLista).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<Modulos>(entity =>
@@ -637,8 +818,49 @@ namespace MiFutLiga.Models
 
                 entity.Property(e => e.idModulo).ValueGeneratedNever();
 
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
                 entity.Property(e => e.Descripcion)
                     .HasMaxLength(30)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
+            });
+
+            modelBuilder.Entity<Noticias>(entity =>
+            {
+                entity.HasKey(e => e.id_Noticias);
+
+                entity.Property(e => e.id_Noticias).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
+                entity.Property(e => e.Campo1)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Campo2)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Contenido).IsUnicode(false);
+
+                entity.Property(e => e.Fecha_publica).HasColumnType("date");
+
+                entity.Property(e => e.Imagen1).HasColumnType("image");
+
+                entity.Property(e => e.Imagen2).HasColumnType("image");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
+
+                entity.Property(e => e.Resumen)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Titulo)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
             });
 
@@ -647,6 +869,8 @@ namespace MiFutLiga.Models
                 entity.HasKey(e => e.idParticipante);
 
                 entity.Property(e => e.idParticipante).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
 
                 entity.Property(e => e.Contrasenia)
                     .IsRequired()
@@ -661,6 +885,8 @@ namespace MiFutLiga.Models
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -678,16 +904,30 @@ namespace MiFutLiga.Models
 
                 entity.Property(e => e.idPermiso).ValueGeneratedNever();
 
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
                 entity.Property(e => e.Descripcion)
                     .HasMaxLength(20)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<PermisosPorUsuario>(entity =>
             {
                 entity.HasKey(e => e.idPermisoPorUsuario);
 
+                entity.HasIndex(e => e.idModulo);
+
+                entity.HasIndex(e => e.idPermiso);
+
+                entity.HasIndex(e => e.idUsuario);
+
                 entity.Property(e => e.idPermisoPorUsuario).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.HasOne(d => d.idModuloNavigation)
                     .WithMany(p => p.PermisosPorUsuario)
@@ -713,6 +953,10 @@ namespace MiFutLiga.Models
 
                 entity.Property(e => e.idPosicion).ValueGeneratedNever();
 
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
+
                 entity.Property(e => e.Posicion)
                     .IsRequired()
                     .HasMaxLength(100)
@@ -723,7 +967,11 @@ namespace MiFutLiga.Models
             {
                 entity.HasKey(e => e.idPreReservacion);
 
+                entity.HasIndex(e => e.idHora);
+
                 entity.Property(e => e.idPreReservacion).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
 
                 entity.Property(e => e.Email)
                     .HasMaxLength(30)
@@ -732,6 +980,8 @@ namespace MiFutLiga.Models
                 entity.Property(e => e.FechaSolicitada).HasColumnType("datetime");
 
                 entity.Property(e => e.FechaSolicitud).HasColumnType("datetime");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.Property(e => e.NombreSolicitante)
                     .HasMaxLength(50)
@@ -755,7 +1005,15 @@ namespace MiFutLiga.Models
             {
                 entity.HasKey(e => e.idPuntuacion);
 
+                entity.HasIndex(e => e.idEquipo);
+
+                entity.HasIndex(e => e.idTorneo);
+
                 entity.Property(e => e.idPuntuacion).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.HasOne(d => d.idEquipoNavigation)
                     .WithMany(p => p.Puntuacion)
@@ -772,7 +1030,17 @@ namespace MiFutLiga.Models
             {
                 entity.HasKey(e => e.idReservacionDeEquipo);
 
+                entity.HasIndex(e => e.idCalendario);
+
+                entity.HasIndex(e => e.idEquipo);
+
+                entity.HasIndex(e => e.idTorneo);
+
                 entity.Property(e => e.idReservacionDeEquipo).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.HasOne(d => d.idCalendarioNavigation)
                     .WithMany(p => p.ReservacionesDeEquipo)
@@ -794,7 +1062,17 @@ namespace MiFutLiga.Models
             {
                 entity.HasKey(e => e.idSancion);
 
+                entity.HasIndex(e => e.idEquipo);
+
+                entity.HasIndex(e => e.idJuego);
+
+                entity.HasIndex(e => e.idTipoSancion);
+
                 entity.Property(e => e.idSancion).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.Property(e => e.Motivo)
                     .HasMaxLength(30)
@@ -825,10 +1103,14 @@ namespace MiFutLiga.Models
 
                 entity.Property(e => e.idTema).ValueGeneratedNever();
 
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
                 entity.Property(e => e.Descripcion)
                     .IsRequired()
                     .HasMaxLength(300)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.Property(e => e.Titulo)
                     .IsRequired()
@@ -842,6 +1124,8 @@ namespace MiFutLiga.Models
 
                 entity.Property(e => e.idTemporada).ValueGeneratedNever();
 
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
                 entity.Property(e => e.Descripcion)
                     .IsRequired()
                     .HasMaxLength(255)
@@ -850,6 +1134,8 @@ namespace MiFutLiga.Models
                 entity.Property(e => e.FechaFin).HasColumnType("datetime");
 
                 entity.Property(e => e.FechaInicio).HasColumnType("datetime");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<TiposJugador>(entity =>
@@ -858,9 +1144,13 @@ namespace MiFutLiga.Models
 
                 entity.Property(e => e.idTipoJugador).ValueGeneratedNever();
 
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
                 entity.Property(e => e.Descripcion)
                     .HasMaxLength(30)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<TiposSancion>(entity =>
@@ -869,20 +1159,32 @@ namespace MiFutLiga.Models
 
                 entity.Property(e => e.idTipoSancion).ValueGeneratedNever();
 
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
                 entity.Property(e => e.Descripcion)
                     .HasMaxLength(30)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<Torneos>(entity =>
             {
                 entity.HasKey(e => e.idTorneo);
 
+                entity.HasIndex(e => e.idCategoria);
+
+                entity.HasIndex(e => e.idDivision);
+
                 entity.Property(e => e.idTorneo).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
 
                 entity.Property(e => e.FechaApertura).HasColumnType("datetime");
 
                 entity.Property(e => e.FechaCierre).HasColumnType("datetime");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.Property(e => e.NombreTorneo)
                     .HasMaxLength(30)
@@ -905,9 +1207,13 @@ namespace MiFutLiga.Models
 
                 entity.Property(e => e.idUsuario).ValueGeneratedNever();
 
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
                 entity.Property(e => e.Login)
                     .HasMaxLength(30)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(50)
@@ -922,7 +1228,15 @@ namespace MiFutLiga.Models
             {
                 entity.HasKey(e => e.IdUsuarioPorEquipo);
 
+                entity.HasIndex(e => e.idEquipo);
+
+                entity.HasIndex(e => e.idUsuario);
+
                 entity.Property(e => e.IdUsuarioPorEquipo).ValueGeneratedNever();
+
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.HasOne(d => d.idEquipoNavigation)
                     .WithMany(p => p.UsuariosPorEquipo)
@@ -943,6 +1257,8 @@ namespace MiFutLiga.Models
 
                 entity.Property(e => e.idVisita).ValueGeneratedNever();
 
+                entity.Property(e => e.Agregado).HasColumnType("datetime");
+
                 entity.Property(e => e.Email)
                     .IsRequired()
                     .HasMaxLength(100)
@@ -955,6 +1271,8 @@ namespace MiFutLiga.Models
                     .HasMaxLength(500)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
+
                 entity.Property(e => e.Nombre)
                     .IsRequired()
                     .HasMaxLength(100)
@@ -964,7 +1282,7 @@ namespace MiFutLiga.Models
             //OnModelCreatingPartial(modelBuilder);
             base.OnModelCreating(modelBuilder);
         }
-
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
     }
 }

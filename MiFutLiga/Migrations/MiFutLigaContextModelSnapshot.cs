@@ -4,20 +4,18 @@ using MiFutLiga.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace MiFutLiga.Data.Migrations
+namespace MiFutLiga.Migrations
 {
     [DbContext(typeof(MiFutLigaContext))]
-    [Migration("20200602230913_CreandoTablasMiFutLiga")]
-    partial class CreandoTablasMiFutLiga
+    partial class MiFutLigaContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.3")
+                .HasAnnotation("ProductVersion", "3.1.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -26,17 +24,26 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("idAdministrador")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("Contrasenia")
                         .IsRequired()
                         .HasColumnType("varchar(15)")
                         .HasMaxLength(15)
                         .IsUnicode(false);
 
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Login")
                         .IsRequired()
                         .HasColumnType("varchar(20)")
                         .HasMaxLength(20)
                         .IsUnicode(false);
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.HasKey("idAdministrador");
 
@@ -48,7 +55,16 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("idCalendario")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime?>("Fecha")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("Modificado")
                         .HasColumnType("datetime");
 
                     b.Property<bool?>("Reservado")
@@ -84,6 +100,15 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("idCalendarioTorneo")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
+
                     b.Property<int?>("idCalendario")
                         .HasColumnType("int");
 
@@ -107,6 +132,15 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<bool?>("Abierta")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("NombreCategoria")
                         .HasColumnType("varchar(30)")
                         .HasMaxLength(30)
@@ -122,10 +156,19 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("idColor")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("Descripcion")
                         .HasColumnType("varchar(30)")
                         .HasMaxLength(30)
                         .IsUnicode(false);
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.HasKey("idColor");
 
@@ -136,6 +179,9 @@ namespace MiFutLiga.Data.Migrations
                 {
                     b.Property<int>("idComentario")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
 
                     b.Property<int>("Anio")
                         .HasColumnType("int");
@@ -149,8 +195,14 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("Dia")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
                     b.Property<int>("Mes")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -175,6 +227,15 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("idDiaPorTorneo")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
+
                     b.Property<int?>("idDia")
                         .HasColumnType("int");
 
@@ -195,10 +256,19 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("idDia")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("Descripcion")
                         .HasColumnType("varchar(25)")
                         .HasMaxLength(25)
                         .IsUnicode(false);
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.HasKey("idDia");
 
@@ -210,11 +280,20 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("idDivision")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
                     b.Property<int?>("EdadMaxima")
                         .HasColumnType("int");
 
                     b.Property<int?>("EdadMinima")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.Property<string>("NombreDivision")
                         .HasColumnType("varchar(30)")
@@ -235,6 +314,9 @@ namespace MiFutLiga.Data.Migrations
                 {
                     b.Property<int>("idEquipo")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
 
                     b.Property<int?>("Apoyos")
                         .HasColumnType("int");
@@ -273,6 +355,9 @@ namespace MiFutLiga.Data.Migrations
                         .HasMaxLength(50)
                         .IsUnicode(false);
 
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("varchar(30)")
@@ -286,6 +371,9 @@ namespace MiFutLiga.Data.Migrations
                         .HasColumnType("varchar(30)")
                         .HasMaxLength(30)
                         .IsUnicode(false);
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.Property<string>("NombreEquipo")
                         .IsRequired()
@@ -329,6 +417,15 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("idFechaDeJuego")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
+
                     b.Property<int?>("idCalendario")
                         .HasColumnType("int");
 
@@ -348,6 +445,15 @@ namespace MiFutLiga.Data.Migrations
                 {
                     b.Property<int>("idFinalista")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.Property<int>("Posinicial")
                         .HasColumnType("int");
@@ -377,10 +483,19 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("idGol")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
                     b.Property<string>("MinutoAnotacion")
                         .HasColumnType("varchar(10)")
                         .HasMaxLength(10)
                         .IsUnicode(false);
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.Property<int?>("idEquipo")
                         .HasColumnType("int");
@@ -407,6 +522,15 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("idGrupo")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("NombreGrupo")
                         .HasColumnType("varchar(60)")
                         .HasMaxLength(60)
@@ -424,6 +548,15 @@ namespace MiFutLiga.Data.Migrations
                 {
                     b.Property<int>("idGruposDetalle")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.Property<int?>("idGrupo")
                         .HasColumnType("int");
@@ -445,10 +578,19 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("idHorario")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Hora")
                         .HasColumnType("varchar(50)")
                         .HasMaxLength(50)
                         .IsUnicode(false);
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.Property<int>("idDivision")
                         .HasColumnType("int");
@@ -465,10 +607,19 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("idHora")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("Descripcion")
                         .HasColumnType("varchar(10)")
                         .HasMaxLength(10)
                         .IsUnicode(false);
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.HasKey("idHora");
 
@@ -479,6 +630,15 @@ namespace MiFutLiga.Data.Migrations
                 {
                     b.Property<int>("idHoraPorDia")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.Property<int?>("idDiaPorTorneo")
                         .HasColumnType("int");
@@ -500,10 +660,19 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("idImagen")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("ContentType")
                         .HasColumnType("nchar(10)")
                         .IsFixedLength(true)
                         .HasMaxLength(10);
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.Property<int>("idTema")
                         .HasColumnType("int");
@@ -523,11 +692,20 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("idInscripcion")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime?>("FechaInscripcion")
                         .HasColumnType("datetime");
 
                     b.Property<bool?>("Finalista")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.Property<bool?>("Residencia")
                         .HasColumnType("bit");
@@ -552,10 +730,19 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("idJornada")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime?>("FechaFinal")
                         .HasColumnType("datetime");
 
                     b.Property<DateTime?>("FechaInicial")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("Modificado")
                         .HasColumnType("datetime");
 
                     b.Property<string>("NumJornada")
@@ -585,6 +772,12 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<bool>("Activo")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("Ganador")
                         .HasColumnType("int");
 
@@ -593,6 +786,9 @@ namespace MiFutLiga.Data.Migrations
 
                     b.Property<int?>("Local")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Observaciones")
                         .HasColumnType("varchar(500)")
@@ -627,6 +823,12 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<bool>("Activo")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("EqLocal")
                         .HasColumnType("int");
 
@@ -644,6 +846,9 @@ namespace MiFutLiga.Data.Migrations
 
                     b.Property<int?>("Jornada")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.Property<int>("NumJuego")
                         .HasColumnType("int");
@@ -676,6 +881,9 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<bool>("Activo")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
                     b.Property<decimal?>("Altura")
                         .HasColumnType("decimal(10, 2)");
 
@@ -687,6 +895,9 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<short>("Edad")
                         .HasColumnType("smallint");
 
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Email")
                         .HasColumnType("varchar(30)")
                         .HasMaxLength(30)
@@ -697,6 +908,9 @@ namespace MiFutLiga.Data.Migrations
 
                     b.Property<byte[]>("Fotografia")
                         .HasColumnType("image");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.Property<string>("NombreJugador")
                         .IsRequired()
@@ -757,6 +971,12 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("idLUsuario")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
                     b.Property<int>("Estatus")
                         .HasColumnType("int");
 
@@ -765,6 +985,9 @@ namespace MiFutLiga.Data.Migrations
                         .HasColumnType("varchar(30)")
                         .HasMaxLength(30)
                         .IsUnicode(false);
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -788,8 +1011,17 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("idLLista")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
                     b.Property<bool>("Asistio")
                         .HasColumnType("bit");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.Property<int>("idEquipo")
                         .HasColumnType("int");
@@ -813,14 +1045,80 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<bool?>("Activo")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("Descripcion")
                         .HasColumnType("varchar(30)")
                         .HasMaxLength(30)
                         .IsUnicode(false);
 
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
+
                     b.HasKey("idModulo");
 
                     b.ToTable("Modulos");
+                });
+
+            modelBuilder.Entity("MiFutLiga.Models.Noticias", b =>
+                {
+                    b.Property<int>("id_Noticias")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("Activo")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("Campo1")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
+
+                    b.Property<string>("Campo2")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
+
+                    b.Property<string>("Contenido")
+                        .HasColumnType("varchar(max)")
+                        .IsUnicode(false);
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Fecha_publica")
+                        .HasColumnType("date");
+
+                    b.Property<byte[]>("Imagen1")
+                        .HasColumnType("image");
+
+                    b.Property<byte[]>("Imagen2")
+                        .HasColumnType("image");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("Resumen")
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
+
+                    b.Property<string>("Titulo")
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
+
+                    b.HasKey("id_Noticias");
+
+                    b.ToTable("Noticias");
                 });
 
             modelBuilder.Entity("MiFutLiga.Models.Participantes", b =>
@@ -830,6 +1128,9 @@ namespace MiFutLiga.Data.Migrations
 
                     b.Property<bool>("Activo")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Contrasenia")
                         .IsRequired()
@@ -842,11 +1143,17 @@ namespace MiFutLiga.Data.Migrations
                         .HasMaxLength(80)
                         .IsUnicode(false);
 
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("varchar(50)")
                         .HasMaxLength(50)
                         .IsUnicode(false);
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -869,10 +1176,19 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("idPermiso")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("Descripcion")
                         .HasColumnType("varchar(20)")
                         .HasMaxLength(20)
                         .IsUnicode(false);
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.HasKey("idPermiso");
 
@@ -883,6 +1199,15 @@ namespace MiFutLiga.Data.Migrations
                 {
                     b.Property<int>("idPermisoPorUsuario")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.Property<int?>("idModulo")
                         .HasColumnType("int");
@@ -912,6 +1237,15 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<bool>("Activo")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("Posicion")
                         .IsRequired()
                         .HasColumnType("varchar(100)")
@@ -928,7 +1262,13 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("idPreReservacion")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
                     b.Property<bool?>("Confirmado")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Eliminado")
                         .HasColumnType("bit");
 
                     b.Property<string>("Email")
@@ -940,6 +1280,9 @@ namespace MiFutLiga.Data.Migrations
                         .HasColumnType("datetime");
 
                     b.Property<DateTime?>("FechaSolicitud")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("Modificado")
                         .HasColumnType("datetime");
 
                     b.Property<string>("NombreSolicitante")
@@ -972,11 +1315,20 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("idPuntuacion")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("GolContra")
                         .HasColumnType("int");
 
                     b.Property<int?>("GolFavor")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.Property<int?>("PContra")
                         .HasColumnType("int");
@@ -1016,6 +1368,15 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("idReservacionDeEquipo")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
+
                     b.Property<int?>("idCalendario")
                         .HasColumnType("int");
 
@@ -1041,8 +1402,17 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("idSancion")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
                     b.Property<int?>("Castigo")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Motivo")
                         .HasColumnType("varchar(30)")
@@ -1080,6 +1450,9 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<bool>("Activo")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
                     b.Property<int>("Anio")
                         .HasColumnType("int");
 
@@ -1092,8 +1465,14 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("Dia")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
                     b.Property<int>("Mes")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Titulo")
                         .IsRequired()
@@ -1114,16 +1493,25 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<bool>("Activo")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("Descripcion")
                         .IsRequired()
                         .HasColumnType("varchar(255)")
                         .HasMaxLength(255)
                         .IsUnicode(false);
 
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("FechaFin")
                         .HasColumnType("datetime");
 
                     b.Property<DateTime>("FechaInicio")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("Modificado")
                         .HasColumnType("datetime");
 
                     b.HasKey("idTemporada");
@@ -1136,10 +1524,19 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("idTipoJugador")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("Descripcion")
                         .HasColumnType("varchar(30)")
                         .HasMaxLength(30)
                         .IsUnicode(false);
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.HasKey("idTipoJugador");
 
@@ -1151,10 +1548,19 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("idTipoSancion")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("Descripcion")
                         .HasColumnType("varchar(30)")
                         .HasMaxLength(30)
                         .IsUnicode(false);
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.Property<int?>("Valor")
                         .HasColumnType("int");
@@ -1172,16 +1578,25 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<bool?>("Abierto")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
                     b.Property<bool?>("Cerrado")
                         .HasColumnType("bit");
 
                     b.Property<bool?>("DobleRonda")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime?>("FechaApertura")
                         .HasColumnType("datetime");
 
                     b.Property<DateTime?>("FechaCierre")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("Modificado")
                         .HasColumnType("datetime");
 
                     b.Property<string>("NombreTorneo")
@@ -1215,10 +1630,19 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<bool?>("Activo")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Login")
                         .HasColumnType("varchar(30)")
                         .HasMaxLength(30)
                         .IsUnicode(false);
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Nombre")
                         .HasColumnType("varchar(50)")
@@ -1240,6 +1664,15 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("IdUsuarioPorEquipo")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
+
                     b.Property<int?>("idEquipo")
                         .HasColumnType("int");
 
@@ -1260,6 +1693,12 @@ namespace MiFutLiga.Data.Migrations
                     b.Property<int>("idVisita")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Agregado")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("varchar(100)")
@@ -1274,6 +1713,9 @@ namespace MiFutLiga.Data.Migrations
                         .HasColumnType("varchar(500)")
                         .HasMaxLength(500)
                         .IsUnicode(false);
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Nombre")
                         .IsRequired()

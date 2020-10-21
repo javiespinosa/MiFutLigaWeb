@@ -11,6 +11,9 @@ namespace MiFutLiga.Models
         }
 
         public int idDiaPorTorneo { get; set; }
+        public DateTime Agregado { get; set; }
+        public DateTime? Modificado { get; set; }
+        public bool Eliminado { get; set; }
         public int? idTorneo { get; set; }
         public int? idDia { get; set; }
 

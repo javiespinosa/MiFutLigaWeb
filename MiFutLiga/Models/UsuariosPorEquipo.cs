@@ -6,6 +6,9 @@ namespace MiFutLiga.Models
     public partial class UsuariosPorEquipo
     {
         public int IdUsuarioPorEquipo { get; set; }
+        public DateTime Agregado { get; set; }
+        public DateTime? Modificado { get; set; }
+        public bool Eliminado { get; set; }
         public int? idEquipo { get; set; }
         public int? idUsuario { get; set; }
 

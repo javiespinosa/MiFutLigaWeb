@@ -12,6 +12,9 @@ namespace MiFutLiga.Models
         }
 
         public int idTema { get; set; }
+        public DateTime Agregado { get; set; }
+        public DateTime? Modificado { get; set; }
+        public bool Eliminado { get; set; }
         public int Anio { get; set; }
         public int Mes { get; set; }
         public int Dia { get; set; }

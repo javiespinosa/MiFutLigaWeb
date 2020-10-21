@@ -1,0 +1,131 @@
+﻿@model IEnumerable<MiFutLiga.Models.Equipos>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreEquipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Delegado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DirTecnico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ColorCamiseta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ColorShort)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Direccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Escudo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContentType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Auxiliar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Medico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ruta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apoyos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fotoequipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idCategoriaNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idDivisionNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreEquipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Delegado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DirTecnico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ColorCamiseta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ColorShort)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Escudo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContentType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Auxiliar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Medico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ruta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apoyos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fotoequipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idCategoriaNavigation.idCategoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idDivisionNavigation.idDivision)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.idEquipo">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.idEquipo">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.idEquipo">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

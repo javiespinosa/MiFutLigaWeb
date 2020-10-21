@@ -12,6 +12,9 @@ namespace MiFutLiga.Models
         }
 
         public int idUsuario { get; set; }
+        public DateTime Agregado { get; set; }
+        public DateTime? Modificado { get; set; }
+        public bool Eliminado { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
         public string Nombre { get; set; }

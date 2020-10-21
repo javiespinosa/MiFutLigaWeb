@@ -13,6 +13,9 @@ namespace MiFutLiga.Models
         }
 
         public int idDivision { get; set; }
+        public DateTime Agregado { get; set; }
+        public DateTime? Modificado { get; set; }
+        public bool Eliminado { get; set; }
         public int idCategoria { get; set; }
         public string NombreDivision { get; set; }
         public int? EdadMinima { get; set; }

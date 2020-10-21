@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MiFutLiga.Models
 {
@@ -13,6 +15,9 @@ namespace MiFutLiga.Models
         }
 
         public int idCategoria { get; set; }
+        public DateTime Agregado { get; set; }
+        public DateTime? Modificado { get; set; }
+        public bool Eliminado { get; set; }
         public string NombreCategoria { get; set; }
         public bool? Abierta { get; set; }
 

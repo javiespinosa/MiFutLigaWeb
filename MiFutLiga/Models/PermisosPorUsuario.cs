@@ -6,6 +6,9 @@ namespace MiFutLiga.Models
     public partial class PermisosPorUsuario
     {
         public int idPermisoPorUsuario { get; set; }
+        public DateTime Agregado { get; set; }
+        public DateTime? Modificado { get; set; }
+        public bool Eliminado { get; set; }
         public int? idModulo { get; set; }
         public int? idUsuario { get; set; }
         public int? idPermiso { get; set; }

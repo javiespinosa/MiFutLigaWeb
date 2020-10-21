@@ -21,6 +21,9 @@ namespace MiFutLiga.Models
         }
 
         public int idTorneo { get; set; }
+        public DateTime Agregado { get; set; }
+        public DateTime? Modificado { get; set; }
+        public bool Eliminado { get; set; }
         public int? idCategoria { get; set; }
         public int? idDivision { get; set; }
         public string NombreTorneo { get; set; }

@@ -15,12 +15,15 @@ namespace MiFutLiga.Models
         }
 
         public int idCalendario { get; set; }
-        public DateTime? Fecha { get; set; }
+        public DateTime Agregado { get; set; }
+        public DateTime? Modificado { get; set; }
+        public bool Eliminado { get; set; }
         public int? idDia { get; set; }
         public int? idHora { get; set; }
-        public bool? Reservado { get; set; }
         public int? idTemporada { get; set; }
         public int? idTorneo { get; set; }
+        public DateTime? Fecha { get; set; }
+        public bool? Reservado { get; set; }
 
         public virtual DiasSemana idDiaNavigation { get; set; }
         public virtual Horas idHoraNavigation { get; set; }

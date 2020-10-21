@@ -13,6 +13,9 @@ namespace MiFutLiga.Models
         }
 
         public int idHora { get; set; }
+        public DateTime Agregado { get; set; }
+        public DateTime? Modificado { get; set; }
+        public bool Eliminado { get; set; }
         public string Descripcion { get; set; }
 
         public virtual ICollection<Calendario> Calendario { get; set; }
